@@ -70,9 +70,7 @@ public class LinkedList{
     }
 
     public static void updateData(Node runner, int data,int newValue){
-
-
-       
+    
         if(runner == null){
             return;
         }
@@ -83,8 +81,25 @@ public class LinkedList{
 
         updateData(runner.next,data,newValue);
 
+    }
 
+    public static void deleteNode(Node runner,int value){
 
+        Node prevNode = head;
+
+        if(head == null){
+            return;
+        }else if(runner.data == value && runner == head){
+            head = head.next;
+            return;
+        }
+
+        while(runner != null && runner.data != value){
+            prevNode = runner;
+            runner = runner.next;
+           }
+        
+        prevNode.next = runner.next;
     }
 
     public static void main(String args[]){
@@ -96,8 +111,14 @@ public class LinkedList{
         l.insertRecursive(l.head,2);
         l.insertRecursive(l.head,1);
 
-        l.updateData(l.head,5,-1);
+        l.updateData(l.head,4,-1);
+
+        l.deleteNode(l.head,1);
         
+        l.deleteNode(l.head,2);
+        l.deleteNode(l.head,-1);
+        
+
 
        l.printListRecursive(l.head);
 
